@@ -1,0 +1,44 @@
+(load "D:/my works/university/6 sem/iis/laba 1/test.txt")
+(load-facts f1)
+(load "D:/my works/university/6 sem/iis/laba 1/deffact-test.txt")
+
+(deftemplate testings
+   (slot a  (type STRING) (default "Unknown"))
+   (slot b (type STRING) (default "Unknown"))
+   (slot c  (type STRING) (default "Unknown")))
+
+
+(assert (testing (w 5)))
+
+ (assert (testings (a "fa") (b "fa")))
+ (assert (testings (a "za") (b "za")))
+ (assert (testings (b "na") (a "na") (c "naa")))
+(assert (testings  (c "ma") (b "maa") (a "ma")))
+
+(assert (testings (a "T") (b "fsffareds") (c "asvcxvd))
+(testings (a "Q") (b "gasvcxvda") (c "asasdd)))
+
+
+(deftemplate foo
+   (slot w (default ?NONE))
+   (slot x (default ?DERIVE))
+   (slot y (default (gensym*)))
+   (slot z (default-dynamic (gensym*))))
+
+(assert (foo))
+(assert (foo (w 3)))
+(assert (foo (w 4)))
+(facts)
+
+(deftemplate foo (slot x) (slot y))
+(assert-string "(status valve open)")
+(assert-string "(light \"red\")")
+(assert-string "(a\\b \"c\\\\d\")")
+(assert-string "(foo (x 3))")
+(assert-string "(foo (y 7))")
+
+(modify 0 (value huf))
+
+(deplicate 0 (type lol) (max-speed 130))
+
+

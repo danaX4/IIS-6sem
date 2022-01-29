@@ -1,0 +1,6 @@
+(deftemplate serials
+	(multislot name (type SYMBOL)(default ?NONE))
+	(multislot country(type SYMBOL)(default-dynamic))
+	(multislot genre (type SYMBOL)(default-dynamic))
+	(slot years(type INTEGER))
+	(slot duration(type INTEGER)))

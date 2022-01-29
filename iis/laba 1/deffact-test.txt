@@ -1,0 +1,12 @@
+(deffacts serials-list 
+(serials (name Money Heist) (country Spain) (genre Action) (years 2017) (duration 70))
+(serials (name Peaky Blinders) (country UK) (genre Criminal) (years 2013) (duration 60))
+(serials (name Peacemaker) (country USA) (genre Fantasy) (years 2022) (duration 55))
+(serials (name Breaking Bad) (country USA) (genre Criminal) (years 2008) (duration 47))
+(serials (name The book of Boba Fett) (country USA) (genre Action) (years 2021) (duration 60))
+(serials (name IMPULSE) (country USA) (genre Action) (years 2018) (duration 50))
+(serials (name Lost) (country USA) (genre Fantasy) (years 2004) (duration 43))
+(serials (name Daredevil) (country USA) (genre Action) (years 2015) (duration 54))
+(serials (name DayBreak) (country USA) (genre Horror) (years 2019) (duration 60))
+(serials (name The Librarians) (country USA) (genre Travelling) (years 2014) (duration 42))
+)
