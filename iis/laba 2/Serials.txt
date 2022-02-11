@@ -1,0 +1,163 @@
+(defglobal ?*LAST_YEAR* = 2022)
+
+(deftemplate Serials
+	(multislot name 
+		(type SYMBOL)
+		(default ?NONE)
+	)
+	(multislot country
+		(type  SYMBOL)
+		(default ?NONE)
+	)
+	(multislot genre 
+		(cardinality 1 ?VARIABLE)
+		(type  SYMBOL)
+		(default ?NONE)
+	)
+	(slot years
+		(type INTEGER)
+		(range 1860 ?VARIABLE)
+		(default-dynamic ?*LAST_YEAR*)
+	)
+	(slot duration
+		(type INTEGER)
+		(range 5 ?VARIABLE)
+		(default 70)
+	)
+)
+
+(deftemplate Trailer
+	(multislot name 
+		(type  SYMBOL)
+		(default ?NONE)
+	)
+	(multislot genre 
+		(cardinality 1 ?VARIABLE)
+		(type  SYMBOL)
+		(default ?NONE)
+	)
+	(slot years
+		(type INTEGER)
+		(range 1860 ?VARIABLE)
+		(default-dynamic ?*LAST_YEAR*)
+	)
+)
+
+(deftemplate Favotite
+	(multislot name 
+		(type  SYMBOL)
+		(default ?NONE)
+	)
+	(slot duration
+		(type INTEGER)
+		(range 5 ?VARIABLE)
+		(default 70)
+	)
+	(multislot country
+		(type  SYMBOL)
+		(default ?NONE)
+	)
+)
+
+(deffacts Serials 
+	(Serials 
+		(name Money Heist) 
+		(country Spain) 
+		(genre Action) 
+		(years 2017) 
+		(duration 70))
+
+	(Serials 
+		(name Peaky Blinders) 
+		(country UK) 
+		(genre Criminal) 
+		(years 2013) 
+		(duration 60))
+
+	(Serials 
+		(name Peacemaker) 
+		(country USA) 
+		(genre Fantasy) 
+		(years 2022) 
+		(duration 55))
+
+	(Serials 
+		(name Breaking Bad) 
+		(country USA) 
+		(genre Criminal) 
+		(years 2008) 
+		(duration 47))
+
+	(Serials 
+		(name The book of Boba Fett) 
+		(country USA) 
+		(genre Action) 
+		(years 2021) 
+		(duration 60))
+
+	(Serials 
+		(name IMPULSE) 
+		(country USA) 
+		(genre Action) 
+		(years 2018) 
+		(duration 50))
+
+	(Serials 
+		(name Lost) 
+		(country USA) 
+		(genre Fantasy) 
+		(years 2004) 
+		(duration 43))
+
+	(Serials 
+		(name Daredevil) 
+		(country USA) 
+		(genre Action) 
+		(years 2015) 
+		(duration 54))
+
+	(Serials 
+		(name DayBreak) 
+		(country USA) 
+		(genre Horror) 
+		(years 2019) 
+		(duration 60))
+
+	(Serials 
+		(name The Librarians) 
+		(country USA) 
+		(genre Travelling) 
+		(years 2014) 
+		(duration 42))
+
+	(Trailer
+		(name The Walking Dead) 
+		(genre Horror)   
+		(years 2010) 
+	)
+	(Trailer
+		(name Park Boys) 
+		(genre Comedy)   
+		(years 2001)  
+	)
+	(Trailer
+		(name Game of Thrones) 
+		(genre Fantasy)   
+		(years 2015) 
+	)
+	(Favotite
+		(name Supernatural) 
+		(duration 50)
+		(country USA)  
+	)
+	(Favotite
+		(name Gotham) 
+		(duration 55)
+		(country USA) 
+	)
+	(Favotite
+		(name The Mandalorian) 
+		(duration 60)
+		(country USA) 
+	)
+)

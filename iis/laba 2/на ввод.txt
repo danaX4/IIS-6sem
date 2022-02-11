@@ -1,0 +1,30 @@
+(load "D:/my works/university/6 sem/iis/laba 2/Serials.txt")
+(load "D:/my works/university/6 sem/iis/laba 2/Defrules.txt")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(load "D:/my works/university/6 sem/iis/laba 2/Dop.txt")

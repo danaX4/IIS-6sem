@@ -1,0 +1,239 @@
+(defglobal ?*LAST_YEAR* = 2022)
+
+(deftemplate Serials
+	(multislot name 
+		(type SYMBOL)
+		(default ?NONE)
+	)
+	(multislot country
+		(type SYMBOL)
+		(default ?NONE)
+	)
+	(multislot genre 
+		(cardinality 1 ?VARIABLE)
+		(type SYMBOL)
+		(default ?NONE)
+	)
+	(slot years
+		(type INTEGER)
+		(range 1860 ?VARIABLE)
+		(default-dynamic ?*LAST_YEAR*)
+	)
+	(slot duration
+		(type INTEGER)
+		(range 20 ?VARIABLE)
+		(default 50)
+	)
+)
+
+(deffacts Serials 
+	(Serials 
+		(name Money Heist) 
+		(country Spain) 
+		(genre Action) 
+		(years 2017) 
+		(duration 70))
+
+	(Serials 
+		(name Peaky Blinders) 
+		(country UK) 
+		(genre Criminal) 
+		(years 2013) 
+		(duration 60))
+
+	(Serials 
+		(name Peacemaker) 
+		(country USA) 
+		(genre Fantasy) 
+		(years 2022) 
+		(duration 55))
+
+	(Serials 
+		(name Breaking Bad) 
+		(country USA) 
+		(genre Criminal) 
+		(years 2008) 
+		(duration 47))
+
+	(Serials 
+		(name The book of Boba Fett) 
+		(country USA) 
+		(genre Action) 
+		(years 2021) 
+		(duration 60))
+
+	(Serials 
+		(name IMPULSE) 
+		(country USA) 
+		(genre Action) 
+		(years 2018) 
+		(duration 50))
+
+	(Serials 
+		(name Lost) 
+		(country USA) 
+		(genre Fantasy) 
+		(years 2004) 
+		(duration 43))
+
+	(Serials 
+		(name Daredevil) 
+		(country USA) 
+		(genre Action) 
+		(years 2015) 
+		(duration 54))
+
+	(Serials 
+		(name DayBreak) 
+		(country USA) 
+		(genre Horror) 
+		(years 2019) 
+		(duration 60))
+
+	(Serials 
+		(name The Librarians) 
+		(country USA) 
+		(genre Travelling) 
+		(years 2014) 
+		(duration 42))
+)
+
+(deffunction ask-question (?question $?allowed-values)
+    (printout t ?question)
+    (bind ?answer (read))
+    
+    (if (lexemep ?answer) 
+    then
+        (bind ?answer (lowcase ?answer))
+    )
+    (while (not (member ?answer ?allowed-values)) do
+        (printout t ?question)
+        (bind ?answer (read))
+
+        (if (lexemep ?answer) 
+        then
+            (bind ?answer (lowcase ?answer))
+        )
+    )
+
+    ?answer
+)
+
+(deffunction yes-or-no-p (?question)
+    (bind ?response (ask-question ?question yes no y n))
+    (if (or (eq ?response yes) (eq ?response y)) 
+    then
+        TRUE
+    else
+        FALSE
+    )
+)
+
+
+(deffunction LastQuestion()
+	(if (yes-or-no-p "It's IMPULSE (yes/no)?")
+	then
+		(printout t "(name IMPULSE) 
+		(country USA) 
+		(genre Action) 
+		(years 2018) 
+		(duration 50)" crlf)
+	else
+		(printout t "(name Daredevil) 
+		(country USA) 
+		(genre Action) 
+		(years 2015) 
+		(duration 54)" crlf)
+	)
+)
+
+(deffunction Action()
+	(if (yes-or-no-p "Duration more that 55 min(yes/no)?")
+	then
+		(printout t "(name The book of Boba Fett) 
+		(country USA) 
+		(genre Action) 
+		(years 2021) 
+		(duration 60)" crlf)
+	else
+		(LastQuestion)
+	)
+)
+
+(deffunction Fantasy()
+	(if (yes-or-no-p "It's 2022 years project (yes/no)?")
+	then
+		(printout t "(name Peacemaker) 
+		(country USA) 
+		(genre Fantasy) 
+		(years 2022) 
+		(duration 55)" crlf)
+	else
+		(printout t "(name Lost) 
+		(country USA) 
+		(genre Fantasy) 
+		(years 2004) 
+		(duration 43)" crlf)
+	)
+)
+
+(deffunction Uniq()
+	(if (yes-or-no-p "Horror (yes/no)?")
+	then
+		(printout t "(name DayBreak) 
+		(country USA) 
+		(genre Horror) 
+		(years 2019) 
+		(duration 60)" crlf)
+	else
+		(printout t "(name The Librarians) 
+		(country USA) 
+		(genre Travelling) 
+		(years 2014) 
+		(duration 42)" crlf)
+	)
+)
+
+(deffunction NoFantasy()
+	(if (yes-or-no-p "Maybe genre is action (yes/no)?")
+	then
+		(Action)
+	else
+		(Uniq)
+	)
+)
+
+(deffunction USA()
+	(if (yes-or-no-p "Genre is fantasy? (yes/no)?")
+	then
+		(Fantasy)
+	else
+		(NoFantasy)
+	)
+)
+
+(deffunction Uk()
+	(if (yes-or-no-p "Is from Spain? (yes/no)?")
+	then
+		(printout t "(name Money Heist) 
+		(country Spain) 
+		(genre Action) 
+		(years 2017) 
+		(duration 70)" crlf)
+	else
+		(printout t "(name Peaky Blinders) 
+		(country UK) 
+		(genre Criminal) 
+		(years 2013) 
+		(duration 60)" crlf)
+	)
+)
+
+(deffunction Start()
+	(if (yes-or-no-p "Country is USA (yes/no)?")
+	then
+		(USA)
+	else
+		(Uk)
+	)
+)

@@ -1,0 +1,153 @@
+(defrule Trailer-Exists
+	(exists
+		(Trailer
+			(name Park Boys) 
+			(genre Comedy)   
+			(years 2001)
+		)
+	)
+	=>
+	(printout t " name="Park Boys" genre=352 years=2010 Trailer exists!" crlf)
+)
+
+(defrule Serial-Exists
+	(exists
+		(Serials
+			(name Money Heist) 
+			(country Spain) 
+			(genre Action) 
+			(years 2017) 
+			(duration 70)
+		)
+	)
+	=>
+	(printout t " name="Money Heist" country="Spain" genre="Action" years=2017 duration=70 Serial exists!" crlf)
+)
+
+(defrule TrailerAndFavotiteNotForall
+	(not
+		(forall
+			(Trailer (name ?name) (genre ?genre) (years ?year))
+			(Favotite (name ?name) (duration ?min) (country ?country))
+		)
+	)
+	=>
+(printout t "lol")
+	;(printout t " name=" ?name " genre=" ?genre " duration=" ?min " years=" ?year " country=" ?country crlf)
+)
+
+(defrule Logical
+	(logical
+	(Favotite (name Gotham) ))
+	=>
+	(assert (Serials
+			(name zzz) 
+			(country xxx) 
+			(genre fff) 
+			(years 1999) 
+			(duration 55))
+)
+)
+
+(defrule OR
+	(Serials 
+		(name ?name) 
+		(country ?country) 
+		(years ?year) 
+	)
+	(test
+		(or
+			(< ?year 2012)
+			(> ?year 2018)
+		)
+	)
+	=>
+	(printout t "name " ?name " country " ?country " years " ?year crlf)
+)
+
+(defrule AND
+	(Serials 
+		(name ?name) 
+		(country ?country) 
+		(years ?year) 
+	)
+	(test
+		(and
+			(< ?year 2010)
+			(> ?year 2015)
+		)
+	)
+	=>
+	(printout t "name " ?name " country " ?country " years " ?year crlf)
+)
+
+(defrule NOT
+	(Serials 
+		(name ?name) 
+		(country ?country) 
+		(years ?year) 
+	)
+	(test
+		(not
+			(> ?year 2020)
+		)
+	)
+	=>
+	(printout t "name " ?name " country " ?country " years " ?year crlf)
+)
+
+
+(defrule ORTrailer
+		(Trailer
+		(name ?name) 
+		(genre ?genre)   
+		(years ?year )
+	)
+
+	(test
+		(or
+			(< ?year 2010)
+			(> ?year 2020)
+		)
+	)
+	=>
+	(printout t "name " ?name " genre " ?genre " years " ?year crlf)
+)
+
+(defrule ANDTrailer
+		(Trailer
+			(name ?name) 
+			(genre ?genre)   
+			(years ?year )
+	)
+	(test
+		(and
+			(< ?year 2010)
+			(> ?year 2020)
+		)
+	)
+	=>
+	(printout t "name " ?name " genre " ?genre " years " ?year crlf)
+)
+
+(defrule NOTTrailer
+		(Trailer
+			(name ?name) 
+			(genre ?genre)   
+			(years ?year )
+	)
+
+	(test
+		(not
+			(< ?year 2010)
+		)
+	)
+	=>
+	(printout t "name " ?name " genre " ?genre " years " ?year crlf)
+)
+
+
+
+
+
+

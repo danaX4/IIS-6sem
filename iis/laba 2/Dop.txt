@@ -1,0 +1,86 @@
+(defdatalate Test
+	(multislot predl 
+		(type STRING)
+		(default ?NONE)
+	)
+	(slot lengt
+	(type INTEGER)
+	(range 0 ?VARIABLE)
+	(default 1)
+	)
+)
+
+(deffacts Tests
+	(Test
+		(predl "Lol 5 Xa 2 Aw 10")
+		(lengt 16)
+	)
+)
+
+(defrule Numb
+		(Test
+			(predl ?p)
+			(lengt ?l)
+		)
+		=>
+		(while (> ?l 0)
+			(bind ?l (- ?l 1))))
+			;(printout t ?p&:(symbolp ?p) crlf)
+			
+)
+
+
+(deffunction dopik()
+	(open "D:/IIS/2 Laba/1.txt" data "r")
+	(bind ?words (readline data))
+	(close data)
+	(bind ?savik "")
+	(bind ?delitik "")
+	(while (neq (str-length ?words) 0)
+		do
+			(bind ?word (string-to-field ?words))
+			(if (> (str-length ?word) 5) then
+			(bind ?savik (sym-cat ?savik " " ?word))
+		else
+			(bind ?delitik (sym-cat ?delitik " " ?word))
+	)
+	(bind ?words (sub-string (+ (str-length ?word) 2) (str-length ?words) ?words))
+		(printout t ?word " - " ?words crlf)
+	)
+	(printout t "Save: " ?savik crlf "Delete: " ?delitik crlf)
+	(open "D:/IIS/2 Laba1/savik.txt" data1 "w")
+	(printout data1 ?savik crlf)
+	(close data1)
+	(open "D:/IIS/2 Laba/1delitik.txt" data2 "w")
+	(printout data2 ?delitik crlf)
+	(close data2)
+)
+
+
+(defrule dopik
+	=> 
+	(open "D:/IIS/2 Laba/1.txt" data "r")
+	(bind ?words (readline data))
+	(close data)
+	(bind ?savik "")
+	(bind ?delitik "")
+	(while (neq (str-length ?words) 0)
+		do
+			(bind ?word (string-to-field ?words))
+			(if (> (str-length ?word) 5) then
+			(bind ?savik (sym-cat ?savik " " ?word))
+		else
+			(bind ?delitik (sym-cat ?delitik " " ?word))
+	)
+	(bind ?words (sub-string (+ (str-length ?word) 2) (str-length ?words) ?words))
+		(printout t ?word " - " ?words crlf)
+	)
+	(printout t "Save: " ?savik crlf "Delete: " ?delitik crlf)
+	(open "D:/IIS/2 Laba1/savik.txt" data1 "w")
+	(printout data1 ?savik crlf)
+	(close data1)
+	(open "D:/IIS/2 Laba/1delitik.txt" data2 "w")
+	(printout data2 ?delitik crlf)
+	(close data2)
+)
+

@@ -1,0 +1,8 @@
+?*n*
+(sayHello 3 "Bruh" 5)
+(to_string)
+(to_string 1)
+(to_string s)
+(to_string "fa")
+(to_string 0.4)
+?*n*

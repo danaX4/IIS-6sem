@@ -1,0 +1,39 @@
+(defglobal 
+ ?*n* = 0
+)
+(deffunction sayHello (?amount ?name $?g)
+	(if (or (not (and (integerp ?amount)(stringp ?name))) (<= ?amount 0) (<= (length $?g) 0) )
+	then ERROR
+	else
+		(loop-for-count (?i 1 ?amount)
+			(printout t "Hello, " ?name "!" crlf)
+		)
+		OK
+	)
+)
+
+(defgeneric to_string)
+
+(defmethod to_string ()
+	""
+)
+(defmethod to_string ( (?var NUMBER) )
+	(str-cat ?var)
+)
+(defmethod to_string ( (?var SYMBOL) )
+	(str-cat ?var)
+)
+(defmethod to_string ( (?var STRING) )
+	(str-cat ?var)
+)
+(defmethod to_string ((?num INTEGER (> ?num 0)) ($?var SYMBOL (> (length ?var) 0) ) )
+	(if (= ?num (length ?var))
+	then (delete$ ?var ?num ?num)
+	else (> ?num (length ?var))
+	(bind ?*n* (- ?num (length ?var)))
+	(delete$ ?var ?*n* ?*n*)
+	)
+)
+(defmethod NOPE ((?num INTEGER (> ?num 0)) (?zz STRING (> (length ?zz) 0) ) )
+	(printout t (* ?num (length ?zz)) crlf)
+)
